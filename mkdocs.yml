@@ -1,0 +1,98 @@
+site_name: CompTIA Linux+ (XK0-005)
+site_description: CompTIA Linux+ (XK0-005)
+site_author: Georgette Webb
+
+theme:
+  name: material
+  #favicon: images/favicon.png
+  include_sidebar: true
+  extra_css:
+    - css/responsive.css
+
+  features:
+    - navigation.tabs
+    - toc.integrate
+    - announce.dismiss
+    - navigation.top
+    - search.suggest
+    - search.share
+    - search.highlight
+    - content.tabs.link
+    - content.tooltips
+    - content.code.select
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  icon:
+    logo: simple/awslambda
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+      primary: blue
+      accent: purple
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+      primary: blue
+      accent: lime
+
+# pages:
+#   - 404: '404.md'
+
+# nav:
+#   - Home: index.md
+#   - "":
+    # - Services: index.md
+    # - Analytics: Analytics/index.md
+    # - Application Integration: Application Integration/index.md
+    # - Cloud Financial Management: Cloud Financial Management/index.md
+    # - Compute: Compute/index.md
+    # - Containers: Containers/index.md
+    # - Customer Engagement: Customer Engagement/index.md
+    # - Database: Database/index.md
+    # - Developer Tools: Developer Tools/index.md
+    # - End User Computing: End User Computing/index.md
+    # - Frontend Web and Mobile: Frontend Web and Mobile/index.md
+    # - Internet of Things (IoT): Internet of Things (IoT)/index.md
+    # - Machine Learning: Machine Learning/index.md
+    # - Management and Governance: Management and Governance/index.md
+    # - Migration and Transfer: Migration and Transfer/index.md
+    # - Networking and Content Delivery: Networking and Content Delivery/index.md
+    # - Security, Identity, and Compliance: Security, Identity, and Compliance/index.md
+    # - Serverless: Serverless/index.md
+    # - Storage: Storage/index.md
+    # - AWS Global Infrastructure: AWS Global Infrastructure/index.md
+    # - Interacting with AWS Services: Interacting with AWS Services/index.md
+    # - Summaries: Summaries/index.md
+
+# plugins:
+#   - typeset:
+#       enabled: true
+#   - privacy
+
+markdown_extensions:
+  - admonition
+  - tables
+  - footnotes
+  - attr_list
+  - md_in_html
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+copyright: |
+  Copyright &copy; 2023 Georgette Webb
+
+extra:
+  generator: false
