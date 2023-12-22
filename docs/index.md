@@ -4,7 +4,7 @@ Welcome to the documentation for the CompTIA Linux+ (XK0-005) certification. Thi
 
 
 
-- [Introduction to Linux Plus](00-introduction-to-linux-plus/index.md)
+<!-- - [Introduction to Linux Plus](00-introduction-to-linux-plus/index.md)
 - [Understand Linux Fundamentals](01-understand-linux-fundamentals/index.md)
 - [Understand Linux Boot Process and Hardware](02-understand-linux-boot-process-and-hardware/index.md)
 - [Understand Package Compilation and Storage Concepts](03-understand-package-compilation-and-storage-concepts/index.md)
@@ -39,4 +39,4 @@ Welcome to the documentation for the CompTIA Linux+ (XK0-005) certification. Thi
 - [Troubleshoot Network Resource Issues](32-troubleshoot-network-resource-issues/index.md)
 - [Troubleshoot Storage and CPU Issues](33-troubleshoot-storage-and-cpu-issues/index.md)
 - [Use systemd to Resolve Common Problems](34-use-systemd-to-resolve-common-problems/index.md)
-- [Troubleshoot Device and User Issues](35-troubleshoot-device-and-user-issues/index.md)
+- [Troubleshoot Device and User Issues](35-troubleshoot-device-and-user-issues/index.md) -->
