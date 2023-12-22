@@ -1,3 +1,5 @@
+# Understanding Linux Fundamentals
+
 ## FHS Basics
 
 **Definition and Purpose of FHS**: The Filesystem Hierarchy Standard organizes the file system in a standardized hierarchical manner. It's not mandatory, but widely adopted as good practice in Linux systems. The FHS helps users understand where to find specific files and directories, aiding in effective system management.
@@ -19,9 +21,11 @@
     ls /boot
     ```
 
-**System Files and Directories**: The importance of understanding the specific roles and purposes of various directories in the FHS is emphasized. This knowledge is vital for tasks like mounting devices or identifying connected hardware.
+## System Files and Directories
 
-### Various System Files and Directories
+The importance of understanding the specific roles and purposes of various directories in the FHS is emphasized. This knowledge is vital for tasks like mounting devices or identifying connected hardware.
+
+***Various System Files and Directories***
 
 **Boot Directory (/boot)**: This directory contains essential files required for booting the system, such as the kernel image, bootloader files, initial RAM disk image, and kernel configuration files. It includes specific files like config (indicating the kernel version) and vmlinuz (the compressed Linux kernel executable).
 
@@ -83,17 +87,17 @@ The /proc directory in Linux serves as a valuable resource for gaining insights 
 ## The Sys Directory
 This is another important virtual file system in Linux: the `/sys` file system.
 
-### Understanding the Sys File System
+**Understanding the Sys File System**
 
 The `/sys` file system, also known as `sysfs`, provides a wealth of information about kernel modules, hardware, and driver information. It's crucial to note that `sysfs` is mounted and accessible from the `/sys` directory.
 
-#### Key Features of the Sys File System
+***Key Features of the Sys File System***
 
 - **Real-Time Updates**: Just like the `/proc` file system, `/sys` is updated on the fly in real time.
 - **Kernel and Hardware Information**: Contains data related to kernel modules and hardware devices.
 - **Accessible Information**: Offers insight into various system components.
 
-##### Navigating the Sys Directory
+***Navigating the Sys Directory***
 !!! example "Command Example"
     Take a look at navigating the `/sys` directory:
 
@@ -112,11 +116,11 @@ The `/sys` file system, also known as `sysfs`, provides a wealth of information 
 
 Directories and files relating to users in the Filesystem Hierarchy Standard (FHS). Exploring directories like the home directory, media directory, mount directory, root directory, and the TMP directory.
 
-### The Home Directory
+***The Home Directory***
 
 The home directory is a personal space for users. Each user has a directory named after their username where personal files like documents, pictures, and videos are stored. It's represented by a tilde (`~`) in the command prompt.
 
-##### Exploring the Home Directory
+***Exploring the Home Directory***
 !!! example "Command Example"
     Navigating the `/home` directory:
 
@@ -125,11 +129,11 @@ The home directory is a personal space for users. Each user has a directory name
     ls
     ```
 
-## The Media Directory
+***The Media Directory***
 
 The media directory is used for mounting and accessing removable media such as DVDs or USB drives. It's typically empty unless a removable media is connected.
 
-##### Accessing the Media Directory
+***Accessing the Media Directory***
 !!! example "Command Example"
     Navigating the `/media` directory:
 
@@ -138,11 +142,11 @@ The media directory is used for mounting and accessing removable media such as D
     ls
     ```
 
-## The Mount Directory
+***The Mount Directory***
 
 Similar to the media directory, the mount directory is used for temporary mounting of file systems, especially those mounted over the network or external drives used as file systems.
 
-##### Using the Mount Directory
+***Using the Mount Directory***
 !!! example "Command Example"
     Navigating the `/mnt` directory:
 
@@ -151,11 +155,11 @@ Similar to the media directory, the mount directory is used for temporary mounti
     ls
     ```
 
-# The Root Directory
+***The Root Directory***
 
 The root directory (`/root`) is the home directory for the root user, similar to the regular user's home directory. It's accessible only by the root user.
 
-##### Accessing the Root Directory as Root User
+***Accessing the Root Directory as Root User***
 !!! example "Command Example"
     To access the Root Directory as the root user, you can use the following commands in your terminal:
 
@@ -164,11 +168,11 @@ The root directory (`/root`) is the home directory for the root user, similar to
     cd /root
     ```
 
-# The TMP Directory
+***The TMP Directory***
 
 The TMP directory is used for temporary files. It has relaxed permissions, allowing the execution of files, which can be a security concern. Files in this directory are often cleared upon system reboot.
 
-##### Viewing the TMP Directory
+***Viewing the TMP Directory***
 !!! example "Command Example"
     To view the contents of the TMP Directory, you can use the following command in your terminal:
 
@@ -180,7 +184,7 @@ The TMP directory is used for temporary files. It has relaxed permissions, allow
 
 Focus on system binaries and programs within the File System Hierarchy Standard (FHS). Explore several key directories, including the `bin` directory, the `opt` directory, the `sbin` directory, and user directories.
 
-##### The `bin` Directory
+***The `bin` Directory***
 !!! example "Command Example"
     The `bin` directory. You can find it at the root level:
 
@@ -193,7 +197,7 @@ Focus on system binaries and programs within the File System Hierarchy Standard 
 
 Inside the bin directory, you'll find essential binary executables needed for the system to operate. These executables are responsible for various system functions and are often denoted by their green text color, indicating that they are executable files.
 
-##### The `opt` Directory
+***The `opt` Directory***
 !!! example "Command Example"
     The `opt` directory. You can find it at the root level:
 
@@ -206,7 +210,7 @@ Inside the bin directory, you'll find essential binary executables needed for th
 
 The opt directory is typically empty initially. It serves as a location for optional software packages that are not required for the system but can be installed from third-party sources. This separation allows for easy removal of these programs and isolates them from the rest of the system.
 
-##### The `sbin` Directory
+***The `sbin` Directory***
 !!! example "Command Example"
     The `sbin` directory. You can find it at the root level:
 
@@ -219,7 +223,7 @@ The opt directory is typically empty initially. It serves as a location for opti
 
 The sbin directory contains system-level binary executables required for system operation. These executables often require administrator privileges (root access) to run. They are crucial for system maintenance and control.
 
-#####The User Directory
+***The User Directory***
 !!! example "Command Example"
     The `user/bin` directory. You can find it at the root level:
 
