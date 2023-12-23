@@ -1,5 +1,5 @@
 
-# understand Linux boot process and hardware
+## understand Linux boot process and hardware
 
 > **The focus on the Linux boot process. Emphasis on the Linux kernel and associated hardware. BIOS and UEFI** Explanation of the BIOS (Basic Input/Output System) as firmware. Introduction to UEFI (Unified Extensible Firmware Interface) as a modern replacement for BIOS.<br>
 
