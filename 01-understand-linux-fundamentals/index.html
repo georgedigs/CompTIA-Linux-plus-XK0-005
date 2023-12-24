@@ -1,0 +1,1321 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="CompTIA Linux+ (XK0-005)">
+      
+      
+        <meta name="author" content="Georgette Webb">
+      
+      
+      
+        <link rel="prev" href="../00-introduction-to-linux-plus/">
+      
+      
+        <link rel="next" href="../02-understand-linux-boot-process-and-hardware/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Understand Linux Fundamentals - CompTIA Linux+ (XK0-005)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#understanding-linux-fundamentals" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CompTIA Linux+ (XK0-005)" class="md-header__button md-logo" aria-label="CompTIA Linux+ (XK0-005)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.986 0a.545.545 0 0 0-.534.548l-.006 4.908c0 .145.06.283.159.39a.532.532 0 0 0 .38.155h3.429l8.197 17.68a.536.536 0 0 0 .488.319h5.811a.547.547 0 0 0 .543-.548v-4.908a.543.543 0 0 0-.543-.548h-2.013L12.739.316A.55.55 0 0 0 12.245 0H4.991Zm.54 1.09h6.367l8.16 17.681a.536.536 0 0 0 .488.318h1.818v3.817h-4.922L9.24 5.226a.536.536 0 0 0-.488-.318h-3.23Zm2.013 8.237a.538.538 0 0 0-.486.31L.6 23.213a.55.55 0 0 0 .032.528.533.533 0 0 0 .454.25h6.169a.547.547 0 0 0 .497-.31l3.38-7.165a.54.54 0 0 0-.003-.469l-3.093-6.41a.547.547 0 0 0-.494-.31Zm.006 1.804 2.488 5.152-3.122 6.62H1.947Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CompTIA Linux+ (XK0-005)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Understand Linux Fundamentals
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CompTIA Linux+ (XK0-005)" class="md-nav__button md-logo" aria-label="CompTIA Linux+ (XK0-005)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.986 0a.545.545 0 0 0-.534.548l-.006 4.908c0 .145.06.283.159.39a.532.532 0 0 0 .38.155h3.429l8.197 17.68a.536.536 0 0 0 .488.319h5.811a.547.547 0 0 0 .543-.548v-4.908a.543.543 0 0 0-.543-.548h-2.013L12.739.316A.55.55 0 0 0 12.245 0H4.991Zm.54 1.09h6.367l8.16 17.681a.536.536 0 0 0 .488.318h1.818v3.817h-4.922L9.24 5.226a.536.536 0 0 0-.488-.318h-3.23Zm2.013 8.237a.538.538 0 0 0-.486.31L.6 23.213a.55.55 0 0 0 .032.528.533.533 0 0 0 .454.25h6.169a.547.547 0 0 0 .497-.31l3.38-7.165a.54.54 0 0 0-.003-.469l-3.093-6.41a.547.547 0 0 0-.494-.31Zm.006 1.804 2.488 5.152-3.122 6.62H1.947Z"/></svg>
+
+    </a>
+    CompTIA Linux+ (XK0-005)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Table of Content
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introduction-to-linux-plus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to Linux Plus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Understand Linux Fundamentals
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Understand Linux Fundamentals
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fhs-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      FHS Basics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-files-and-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Files and Directories
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-dev-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Dev Directory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-proc-directory-proc" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Proc Directory - /proc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-sys-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Sys Directory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fhs-user-files-and-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      FHS User Files and Directories
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fhs-system-binaries-and-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      FHS System Binaries and Programs
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-understand-linux-boot-process-and-hardware/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Linux Boot Process and Hardware
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-understand-package-compilation-and-storage-concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Package Compilation and Storage Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-edit-files-on-linux-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Edit Files on Linux Systems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-compress-backup-and-archive-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compress, Backup, and Archive Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-understand-file-and-directory-operations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand File and Directory Operations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-manage-and-transfer-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manage and Transfer Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-understand-partitions-and-monitor-storage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Partitions and Monitor Storage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-create-and-mount-filesystems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create and Mount Filesystems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-understand-logical-volume-management-and-luks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Logical Volume Management and LUKS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-understanding-network-storage-and-shares/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding Network Storage and Shares
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-manage-and-schedule-services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manage and Schedule Services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-manage-linux-processes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manage Linux Processes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-manage-network-interfaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manage Network Interfaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-understand-name-resolution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Name Resolution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-monitor-networks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monitor Networks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-understand-package-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Package Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-packages-system-configurations-and-localization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Packages, System Configurations, and Localization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-configure-kernel-options-and-system-services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure Kernel Options and System Services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-understand-cryptography-and-certificates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Cryptography and Certificates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-understand-authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22-harden-linux-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Harden Linux Systems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-implement-identity-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implement Identity Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24-configure-firewalls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure Firewalls
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../25-configure-and-execute-remote-connectivity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure and Execute Remote Connectivity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../26-understand-security-enhanced-linux-and-access-control/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Security-Enhanced Linux and Access Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../27-understand-permissions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Permissions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../28-automate-tasks-with-shell-scripts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automate Tasks with Shell Scripts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../29-perform-basic-version-control/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perform Basic Version Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30-understand-container-cloud-and-orchestration-concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Container, Cloud, and Orchestration Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../31-understand-infrastructure-as-code-technologies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Infrastructure as Code Technologies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../32-troubleshoot-network-resource-issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshoot Network Resource Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../33-troubleshoot-storage-and-cpu-issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshoot Storage and CPU Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../34-use-systemd-to-resolve-common-problems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use systemd to Resolve Common Problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../35-troubleshoot-device-and-user-issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshoot Device and User Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="understanding-linux-fundamentals">Understanding Linux Fundamentals</h1>
+<h2 id="fhs-basics">FHS Basics</h2>
+<p><strong>Definition and Purpose of FHS</strong>: The Filesystem Hierarchy Standard organizes the file system in a standardized hierarchical manner. It's not mandatory, but widely adopted as good practice in Linux systems. The FHS helps users understand where to find specific files and directories, aiding in effective system management.</p>
+<p><strong>Comparison with Windows File System</strong>: The transcript contrasts the Linux FHS with the Windows file system. In Windows, the file system is directly tied to physical drives (like C: or D: drives). However, in Linux, the physical hardware is abstracted away. The user may access different directories like 'Downloads' or 'Documents' without knowing which physical disk they reside on. This abstraction provides a seamless experience, with the actual physical storage details being irrelevant to the user's navigation.</p>
+<p><strong>Navigating Linux Filesystem</strong>: The concept of the 'root' of the filesystem is highlighted. The root (/) is different from the 'root directory' (/root). The root (/) is the base of the entire filesystem hierarchy. Understanding this is crucial for navigating Linux systems effectively.</p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>To display the current working directory:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">pwd</span>
+</span></code></pre></div>
+To display the contents of directories like <code>/boot</code>, <code>/etc</code>, or any other directory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ls<span class="w"> </span>/etc
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ls<span class="w"> </span>/boot
+</span></code></pre></div>
+</div>
+<h2 id="system-files-and-directories">System Files and Directories</h2>
+<p>The importance of understanding the specific roles and purposes of various directories in the FHS is emphasized. This knowledge is vital for tasks like mounting devices or identifying connected hardware.</p>
+<p><strong><em>Various System Files and Directories</em></strong></p>
+<p><strong>Boot Directory (/boot)</strong>: This directory contains essential files required for booting the system, such as the kernel image, bootloader files, initial RAM disk image, and kernel configuration files. It includes specific files like config (indicating the kernel version) and vmlinuz (the compressed Linux kernel executable).</p>
+<p><strong>Etc Directory (/etc)</strong>: This is where system configuration files are stored. The directory includes numerous .conf files and subdirectories for configuring different aspects of the system, such as network settings through netplan.</p>
+<p><strong>Lib Directory (/lib)</strong>: This directory houses crucial libraries needed for system operation. Examples include libraries for package management (apt), handling printers (cups), Python programming language support, and applications like rhythm box and libreoffice.</p>
+<p><strong>Var Directory (/var)</strong>: Home to variable data, which includes information that changes in size or content over time, like logs and emails. An example is the /var/log subdirectory, containing various logs, including kernel messages.</p>
+<h2 id="the-dev-directory">The Dev Directory</h2>
+<p>The "dev" directory is an essential part of the Linux file system, containing device files that allow the system to communicate with hardware devices.</p>
+<p><strong>The "dev" Directory</strong>: The "dev" directory houses device files that enable communication between the operating system and hardware devices like keyboards, USB drives, and more.</p>
+<p><strong>Device File Naming Conventions</strong>: Device files in the "dev" directory follow a naming convention. For example, "sda" typically represents a hard drive, and "a" indicates it's the first hard drive. Additional drives are named "sdb," "sdc," and so on. If there are partitions, they are numbered, like "sda1" or "sdb3," indicating the first partition of the first drive or the third partition of the second drive.</p>
+<p><strong>"tty" Entries</strong>: The "dev" directory may contain "tty" entries, representing terminals or consoles. When you log in via a terminal, it will create a corresponding "tty" entry.</p>
+<p><strong>Special Device Files</strong>: There are special device files in the "dev" directory. For example, "/dev/null" is used to discard information put into it. This can be helpful when dealing with commands that produce both valid output and error messages.</p>
+<p><strong>"/dev/random"</strong>: This special file is used to generate random data, which can be useful for applications that require random data, such as encryption or password generation.</p>
+<p><strong>System Administration</strong>: Device files in the "dev" directory play a vital role in system administration, and understanding how to use them can be valuable for managing a Linux system effectively.</p>
+<h2 id="the-proc-directory-proc">The Proc Directory - /proc</h2>
+<p>The /proc directory in Linux serves as a valuable resource for gaining insights into the system's current state, including processes, memory usage, and other system-related information.</p>
+<p><strong>Virtual File System</strong>: The /proc directory is a virtual file system that exists in memory. It's dynamically created when the system boots up, and it holds various types of system-related information.</p>
+<p><strong>Process Information</strong>: One of the primary purposes of the /proc directory is to provide information about running processes. Each running process has a corresponding directory within /proc, identified by its process ID (PID). These directories contain information about the process, including memory usage and associated files.</p>
+<p><strong>Process ID (PID)</strong>: The PID is a numerical value associated with each process and is used to identify and manage processes on the system. The /proc directory contains directories named after these PIDs, allowing easy access to process-related information.</p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>To view the running processes and their PIDs, use the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ps<span class="w"> </span>-e
+</span></code></pre></div>
+</div>
+<p><strong>Dynamic Updates</strong>: The /proc directory is dynamically updated in real-time. When a process starts or stops, its corresponding directory is created or removed in /proc. This dynamic nature reflects the current state of processes on the system.</p>
+<p><strong>Other Information</strong>: In addition to process-related data, the /proc directory provides access to various system information files. Examples include information about interrupts, supported file systems, memory usage, networking, and more. These files can be useful for troubleshooting and monitoring system performance.</p>
+<p><strong>/proc/meminfo</strong>: The /proc/meminfo file contains information about system memory usage, including total memory, free memory, and caching/buffering statistics.</p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>To view the memory usage of the system, use the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/proc$<span class="w"> </span>cat<span class="w"> </span>meminfo
+</span></code></pre></div>
+</div>
+<p><strong>/proc/net</strong>: The /proc/net directory contains network-related information, such as routing tables and protocol-specific details.</p>
+<p><strong>/proc/sys</strong>: The segment mentions that the next topic of discussion will be the /sys directory. This directory is also essential and used for various system configuration and control settings.</p>
+<h2 id="the-sys-directory">The Sys Directory</h2>
+<p>This is another important virtual file system in Linux: the <code>/sys</code> file system.</p>
+<p><strong>Understanding the Sys File System</strong></p>
+<p>The <code>/sys</code> file system, also known as <code>sysfs</code>, provides a wealth of information about kernel modules, hardware, and driver information. It's crucial to note that <code>sysfs</code> is mounted and accessible from the <code>/sys</code> directory.</p>
+<p><strong><em>Key Features of the Sys File System</em></strong></p>
+<ul>
+<li><strong>Real-Time Updates</strong>: Just like the <code>/proc</code> file system, <code>/sys</code> is updated on the fly in real time.</li>
+<li><strong>Kernel and Hardware Information</strong>: Contains data related to kernel modules and hardware devices.</li>
+<li><strong>Accessible Information</strong>: Offers insight into various system components.</li>
+</ul>
+<p><strong><em>Navigating the Sys Directory</em></strong></p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>Take a look at navigating the <code>/sys</code> directory:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>/sys
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ls
+</span></code></pre></div>
+This will display the hrives on the system (examples = sda, sdb):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>block/
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ls
+</span></code></pre></div>
+</div>
+<h2 id="fhs-user-files-and-directories">FHS User Files and Directories</h2>
+<p>Directories and files relating to users in the Filesystem Hierarchy Standard (FHS). Exploring directories like the home directory, media directory, mount directory, root directory, and the TMP directory.</p>
+<p><strong><em>The Home Directory</em></strong></p>
+<p>The home directory is a personal space for users. Each user has a directory named after their username where personal files like documents, pictures, and videos are stored. It's represented by a tilde (<code>~</code>) in the command prompt.</p>
+<p><strong><em>Exploring the Home Directory</em></strong></p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>Navigating the <code>/home</code> directory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>~
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ls
+</span></code></pre></div>
+</div>
+<p><strong><em>The Media Directory</em></strong></p>
+<p>The media directory is used for mounting and accessing removable media such as DVDs or USB drives. It's typically empty unless a removable media is connected.</p>
+<p><strong><em>Accessing the Media Directory</em></strong></p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>Navigating the <code>/media</code> directory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>/media
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ls
+</span></code></pre></div>
+</div>
+<p><strong><em>The Mount Directory</em></strong></p>
+<p>Similar to the media directory, the mount directory is used for temporary mounting of file systems, especially those mounted over the network or external drives used as file systems.</p>
+<p><strong><em>Using the Mount Directory</em></strong></p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>Navigating the <code>/mnt</code> directory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>/mnt
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ls
+</span></code></pre></div>
+</div>
+<p><strong><em>The Root Directory</em></strong></p>
+<p>The root directory (<code>/root</code>) is the home directory for the root user, similar to the regular user's home directory. It's accessible only by the root user.</p>
+<p><strong><em>Accessing the Root Directory as Root User</em></strong></p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>To access the Root Directory as the root user, you can use the following commands in your terminal:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>-i
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">cd</span><span class="w"> </span>/root
+</span></code></pre></div>
+</div>
+<p><strong><em>The TMP Directory</em></strong></p>
+<p>The TMP directory is used for temporary files. It has relaxed permissions, allowing the execution of files, which can be a security concern. Files in this directory are often cleared upon system reboot.</p>
+<p><strong><em>Viewing the TMP Directory</em></strong></p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>To view the contents of the TMP Directory, you can use the following command in your terminal:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>ls<span class="w"> </span>/tmp
+</span></code></pre></div>
+</div>
+<h2 id="fhs-system-binaries-and-programs">FHS System Binaries and Programs</h2>
+<p>Focus on system binaries and programs within the File System Hierarchy Standard (FHS). Explore several key directories, including the <code>bin</code> directory, the <code>opt</code> directory, the <code>sbin</code> directory, and user directories.</p>
+<p><strong><em>The <code>bin</code> Directory</em></strong></p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>The <code>bin</code> directory. You can find it at the root level:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>/
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ls
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">cd</span><span class="w"> </span>bin
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>ls
+</span></code></pre></div>
+</div>
+<p>Inside the bin directory, you'll find essential binary executables needed for the system to operate. These executables are responsible for various system functions and are often denoted by their green text color, indicating that they are executable files.</p>
+<p><strong><em>The <code>opt</code> Directory</em></strong></p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>The <code>opt</code> directory. You can find it at the root level:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span>/
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ls
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">cd</span><span class="w"> </span>opt
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>ls
+</span></code></pre></div>
+</div>
+<p>The opt directory is typically empty initially. It serves as a location for optional software packages that are not required for the system but can be installed from third-party sources. This separation allows for easy removal of these programs and isolates them from the rest of the system.</p>
+<p><strong><em>The <code>sbin</code> Directory</em></strong></p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>The <code>sbin</code> directory. You can find it at the root level:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span>/
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ls
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">cd</span><span class="w"> </span>sbin
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>ls
+</span></code></pre></div>
+</div>
+<p>The sbin directory contains system-level binary executables required for system operation. These executables often require administrator privileges (root access) to run. They are crucial for system maintenance and control.</p>
+<p><strong><em>The User Directory</em></strong></p>
+<div class="admonition example">
+<p class="admonition-title">Command Example</p>
+<p>The <code>user/bin</code> directory. You can find it at the root level:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span>/user
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>ls
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nb">cd</span><span class="w"> </span>bin
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>ls
+</span></code></pre></div>
+</div>
+<p>Within the <code>user</code> directory, you'll find various subdirectories containing executables, libraries, and documentation. Of particular interest is the <code>user/bin</code> directory, which is used for local user programs.</p>
+<p>The <code>user/bin</code> directory holds executables for local user programs. These programs are accessible to individual users and can be run without administrative privileges. You can use these executables in your user account without specifying their full paths, thanks to the PATH environment variable, which includes the directory location.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Georgette Webb
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.indexes", "navigation.instant", "toc.integrate", "announce.dismiss", "search.suggest", "search.share", "search.highlight", "content.tabs.link", "content.tooltips", "content.code.select", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>

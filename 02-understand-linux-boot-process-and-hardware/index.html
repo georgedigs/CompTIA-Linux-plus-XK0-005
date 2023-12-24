@@ -1,0 +1,1384 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="CompTIA Linux+ (XK0-005)">
+      
+      
+        <meta name="author" content="Georgette Webb">
+      
+      
+      
+        <link rel="prev" href="../01-understand-linux-fundamentals/">
+      
+      
+        <link rel="next" href="../03-understand-package-compilation-and-storage-concepts/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Understand Linux Boot Process and Hardware - CompTIA Linux+ (XK0-005)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#understand-linux-boot-process-and-hardware" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="CompTIA Linux+ (XK0-005)" class="md-header__button md-logo" aria-label="CompTIA Linux+ (XK0-005)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.986 0a.545.545 0 0 0-.534.548l-.006 4.908c0 .145.06.283.159.39a.532.532 0 0 0 .38.155h3.429l8.197 17.68a.536.536 0 0 0 .488.319h5.811a.547.547 0 0 0 .543-.548v-4.908a.543.543 0 0 0-.543-.548h-2.013L12.739.316A.55.55 0 0 0 12.245 0H4.991Zm.54 1.09h6.367l8.16 17.681a.536.536 0 0 0 .488.318h1.818v3.817h-4.922L9.24 5.226a.536.536 0 0 0-.488-.318h-3.23Zm2.013 8.237a.538.538 0 0 0-.486.31L.6 23.213a.55.55 0 0 0 .032.528.533.533 0 0 0 .454.25h6.169a.547.547 0 0 0 .497-.31l3.38-7.165a.54.54 0 0 0-.003-.469l-3.093-6.41a.547.547 0 0 0-.494-.31Zm.006 1.804 2.488 5.152-3.122 6.62H1.947Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CompTIA Linux+ (XK0-005)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Understand Linux Boot Process and Hardware
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="lime"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="CompTIA Linux+ (XK0-005)" class="md-nav__button md-logo" aria-label="CompTIA Linux+ (XK0-005)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4.986 0a.545.545 0 0 0-.534.548l-.006 4.908c0 .145.06.283.159.39a.532.532 0 0 0 .38.155h3.429l8.197 17.68a.536.536 0 0 0 .488.319h5.811a.547.547 0 0 0 .543-.548v-4.908a.543.543 0 0 0-.543-.548h-2.013L12.739.316A.55.55 0 0 0 12.245 0H4.991Zm.54 1.09h6.367l8.16 17.681a.536.536 0 0 0 .488.318h1.818v3.817h-4.922L9.24 5.226a.536.536 0 0 0-.488-.318h-3.23Zm2.013 8.237a.538.538 0 0 0-.486.31L.6 23.213a.55.55 0 0 0 .032.528.533.533 0 0 0 .454.25h6.169a.547.547 0 0 0 .497-.31l3.38-7.165a.54.54 0 0 0-.003-.469l-3.093-6.41a.547.547 0 0 0-.494-.31Zm.006 1.804 2.488 5.152-3.122 6.62H1.947Z"/></svg>
+
+    </a>
+    CompTIA Linux+ (XK0-005)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Table of Content
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introduction-to-linux-plus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction to Linux Plus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-understand-linux-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Linux Fundamentals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Understand Linux Boot Process and Hardware
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Understand Linux Boot Process and Hardware
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#understand-linux-boot-process-and-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      understand Linux boot process and hardware
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition-tables-and-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partition Tables and Firmware
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition-table-styles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Partition Table Styles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      External Hardware
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-the-boot-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding the Boot Process
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-bootloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Bootloader
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boot-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Boot Sources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-panic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kernel Panic
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-understand-package-compilation-and-storage-concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Package Compilation and Storage Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-edit-files-on-linux-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Edit Files on Linux Systems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-compress-backup-and-archive-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compress, Backup, and Archive Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-understand-file-and-directory-operations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand File and Directory Operations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-manage-and-transfer-files/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manage and Transfer Files
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-understand-partitions-and-monitor-storage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Partitions and Monitor Storage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-create-and-mount-filesystems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Create and Mount Filesystems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-understand-logical-volume-management-and-luks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Logical Volume Management and LUKS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-understanding-network-storage-and-shares/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understanding Network Storage and Shares
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-manage-and-schedule-services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manage and Schedule Services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-manage-linux-processes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manage Linux Processes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-manage-network-interfaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Manage Network Interfaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-understand-name-resolution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Name Resolution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-monitor-networks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monitor Networks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-understand-package-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Package Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-packages-system-configurations-and-localization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Packages, System Configurations, and Localization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-configure-kernel-options-and-system-services/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure Kernel Options and System Services
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-understand-cryptography-and-certificates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Cryptography and Certificates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-understand-authentication/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Authentication
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22-harden-linux-systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Harden Linux Systems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-implement-identity-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Implement Identity Management
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24-configure-firewalls/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure Firewalls
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../25-configure-and-execute-remote-connectivity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configure and Execute Remote Connectivity
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../26-understand-security-enhanced-linux-and-access-control/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Security-Enhanced Linux and Access Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../27-understand-permissions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Permissions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../28-automate-tasks-with-shell-scripts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automate Tasks with Shell Scripts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../29-perform-basic-version-control/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perform Basic Version Control
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30-understand-container-cloud-and-orchestration-concepts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Container, Cloud, and Orchestration Concepts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../31-understand-infrastructure-as-code-technologies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Understand Infrastructure as Code Technologies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../32-troubleshoot-network-resource-issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshoot Network Resource Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../33-troubleshoot-storage-and-cpu-issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshoot Storage and CPU Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../34-use-systemd-to-resolve-common-problems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use systemd to Resolve Common Problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../35-troubleshoot-device-and-user-issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshoot Device and User Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Understand Linux Boot Process and Hardware</h1>
+
+<h2 id="understand-linux-boot-process-and-hardware">understand Linux boot process and hardware</h2>
+<blockquote>
+<p><strong>The focus on the Linux boot process. Emphasis on the Linux kernel and associated hardware. BIOS and UEFI</strong> Explanation of the BIOS (Basic Input/Output System) as firmware. Introduction to UEFI (Unified Extensible Firmware Interface) as a modern replacement for BIOS.<br></p>
+<p><strong>Identifying PCI Devices</strong> Explanation of identifying PCI (Peripheral Component Interconnect) devices. Noting that PCI is a legacy technology, unlike USB.<br></p>
+</blockquote>
+<h2 id="partition-tables-and-firmware">Partition Tables and Firmware</h2>
+<p><strong>Differences Between MBR and GPT</strong></p>
+<p>The differences between MBR (Master Boot Record) and GPT (GUID Partition Table) in the context of disk partitioning.</p>
+<p>When you have a disk and you want to store data on it, you can't just put data on it without any preparation. Instead, the disk needs to be formatted.</p>
+<p>But before formatting, it needs something called a <strong>partition table</strong>. </p>
+<h2 id="partition-table-styles">Partition Table Styles</h2>
+<blockquote>
+<p><strong>Partition Tables</strong> Two different partition tables, specifically MBR (Master Boot Record) and GPT (GUID Partition Table).<br>
+There are two main styles of partition tables: MBR and GPT. These two styles are quite different.</p>
+</blockquote>
+<p><strong>MBR (Master Boot Record)</strong></p>
+<p><strong>MBR</strong> is the older of the two and has been widely used. Its biggest advantage is its compatibility with various systems and boot processes. However, it has limitations compared to GPT.</p>
+<p><strong>GPT (GUID Partition Table)</strong></p>
+<p><strong>GPT</strong> is more modern and advanced. It offers more features and flexibility compared to MBR. GPT is suitable for larger disks, supports a higher number of partitions, and provides better support for UEFI booting and data integrity.</p>
+<p><strong>Choosing Between MBR and GPT</strong></p>
+<p>The choice between MBR and GPT depends on your specific needs and hardware. If you have a legacy system or require maximum compatibility, MBR might be the better choice. However, if you have a modern system with larger disks and need advanced features, GPT is usually the preferred option. Your decision should be based on your specific requirements.</p>
+<h2 id="external-hardware">External Hardware</h2>
+<blockquote>
+<p><strong>Peripherals</strong> Focus on working with peripherals, particularly USB devices. Mention of commands to identify connected USB devices.<br>
+- External Hardware in Linux:
+  - Mnaging external hardware components in Linux.</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>USB devices</strong> are common external hardware used for storing data and possibly even as a boot source.</p>
+</li>
+<li>
+<p><strong>PCI Devices</strong> Older Peripheral Component Interconnect (PCI) interface used to connect devices like SCSI, modems, and network cards.</p>
+</li>
+<li>
+<p><strong>Importance of Hardware Management</strong>: Understanding and managing external hardware components is crucial, especially for Linux+ examination.</p>
+</li>
+<li>
+<p><strong><code>lspci</code> Command</strong>: Lists PCI buses and devices connected to them.</p>
+</li>
+<li>
+<p><strong>Using man Command</strong>: Using the <code>man</code> command to access manual pages for Linux utilities.</p>
+</li>
+<li>
+<p><strong>Options for <code>lspci</code></strong>: The use of various options like <code>-v</code>, <code>-vv</code>, <code>-vvv</code>, <code>-b</code>, <code>-k</code>, and <code>-D</code> with <code>lspci</code> for detailed information.</p>
+</li>
+<li>
+<p><strong><code>lsusb</code> Command</strong>: The <code>lsusb</code> command for listing USB devices in Linux.</p>
+</li>
+<li>
+<p><strong>Accessing lsusb Manual Pages</strong>: How to access manual pages for the <code>lsusb</code> command using <code>man</code>.</p>
+</li>
+<li>
+<p><strong>Using <code>lsusb</code></strong>: The use of <code>lsusb</code> to list connected USB devices and obtain verbose information with <code>-v</code>.</p>
+</li>
+<li>
+<p><strong>dmidecode Command</strong>: The <code>dmidecode</code> command for inspecting hardware information, including BIOS, motherboard, processor, and memory details.</p>
+</li>
+<li>
+<p><strong>Accessing dmidecode Manual Pages</strong>: How to access manual pages for the <code>dmidecode</code> command using <code>man</code>.</p>
+</li>
+<li>
+<p><strong>Using dmidecode</strong>: The use of <code>dmidecode</code> with <code>-t</code> to inspect various hardware details, requiring superuser privileges with <code>sudo</code>.</p>
+</li>
+</ul>
+<h2 id="understanding-the-boot-process">Understanding the Boot Process</h2>
+<blockquote>
+<p><strong>Linux Boot Process Overview</strong> High-level overview of the Linux boot process. Mention of components like BIOS/UEFI and the bootloader Grub2.<br>
+- <strong>BIOS/UEFI:</strong> The boot process starts with the BIOS (or UEFI) firmware, which initiates the boot sequence. BIOS and UEFI are often used interchangeably, even though modern systems usually use UEFI.</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>POST (Power-On Self Test):</strong> After the BIOS/UEFI is invoked, the system performs a POST, which is a set of hardware self-tests to ensure everything is functioning correctly.</p>
+</li>
+<li>
+<p><strong>Bootloader:</strong> The bootloader, such as GRUB2 (the most common one), is loaded by BIOS/UEFI. The bootloader's job is to load the Linux kernel.</p>
+</li>
+<li>
+<p><strong>Kernel (vmlinuz):</strong> The Linux kernel (vmlinuz) is a compressed image that is hardware-agnostic and generic. It forms the core of the operating system.</p>
+</li>
+<li>
+<p><strong>initrd (Initial RAM Disk):</strong> The initrd is a RAM disk loaded in memory. It contains kernel modules necessary to identify hardware and allow the full kernel to be loaded.</p>
+</li>
+<li>
+<p><strong>Kernel Modules:</strong> Initrd loads necessary kernel modules, enabling the kernel to mount the hard drive and access other modules stored on it.</p>
+</li>
+<li>
+<p><strong>System Initialization:</strong> Once the kernel is fully loaded, control is handed over to the system initialization process, which varies (e.g., SysVinit, Upstart, or systemd). In modern systems, systemd is often used to manage system services and initialize the system.</p>
+</li>
+<li>
+<p><strong>Operational System:</strong> After system initialization, the Linux system becomes fully operational, and users can log in, run services, and perform regular tasks.</p>
+</li>
+</ul>
+<h2 id="the-bootloader">The Bootloader</h2>
+<blockquote>
+<p><strong>Grub2</strong> A closer look at the Grub2 bootloader and its role in the boot process.<br></p>
+</blockquote>
+<ul>
+<li>
+<p><strong>Bootloader Evolution:</strong> The evolution of Linux bootloaders, starting with LILO, followed by GRUB (GRUB Legacy), and finally, GRUB2 (often referred to as just GRUB in casual terms).</p>
+</li>
+<li>
+<p><strong>GRUB2 Features:</strong> GRUB2 is a significant improvement over its predecessors as it can handle UEFI firmware and GPT partition style, making it more compatible with modern systems.</p>
+</li>
+<li>
+<p><strong>GRUB Configuration File:</strong> The configuration file for GRUB2 is typically located in <code>/etc/default/grub</code> on Debian-based systems and <code>/boot/grub2/grub.cfg</code> on Red Hat-based systems (like Rocky Linux).</p>
+</li>
+<li>
+<p><strong>Modifying Configuration:</strong> Users should not modify <code>grub.cfg</code> directly but should instead make changes in <code>/etc/default/grub</code>. After making changes, the <code>update-grub</code> command (on Debian-based systems) or <code>grub2-mkconfig</code> (on Red Hat-based systems) is used to apply the modifications to <code>grub.cfg</code>.
+One big distinction about GRUB2, now, we could handle UEFI firmware, which means we could handle the GPT partition style.</p>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning Message</p>
+<p>This is where the grub.cfg file is located.</p>
+<div class="admonition example">
+<p class="admonition-title">root location of grub2 configuration file</p>
+</div>
+<p>You're not meant to modify this configuration file directly.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>root@systemn:<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/boot/grub<span class="w"> </span>ls
+</span></code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Location of grub2 configuration file for modification indirectly</p>
+</div>
+<p>This is the location to modify the configuration file indirectly.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>root@systemn:<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/etc
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>root@systemn:/etc$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>default
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>root@systemn:/etc/default$<span class="w"> </span>cat<span class="w"> </span>grub
+</span></code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">To update changes run command below</p>
+</div>
+<p>if you change this file, run 'update-grub' afterwards to update.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>root@systemn:/etc/default$<span class="w"> </span>update-grub
+</span></code></pre></div>
+</div>
+<ul>
+<li>
+<p><strong>Distribution Differences:</strong> Red Hat-based systems explicitly use the directory name <code>GRUB2</code>, while Debian-based systems often refer to GRUB2 as just GRUB. The command for generating the configuration file also differs between distributions.</p>
+</li>
+<li>
+<p><strong>Understanding Differences:</strong> It's important to understand these distribution-specific differences and commands when working with Linux bootloaders.</p>
+</li>
+</ul>
+<h2 id="boot-sources">Boot Sources</h2>
+<blockquote>
+<p><strong>Different Boot Sources</strong> Explanation of various boot sources beyond just hard drives. The ability to boot kernel images from a network.<br>
+- Bootloader Evolution: The text discusses the historical evolution of Linux bootloaders, starting with LILO and its limitations with MBR-based systems.</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>GRUB Legacy</strong>: The original GRUB, referred to as "GRUB Legacy," allowed users to choose the operating system during boot through a menu. Its configuration was stored in <code>/boot/grub/menu.lst</code>.</p>
+</li>
+<li>
+<p><strong>Transition to GRUB2</strong>: GRUB Legacy was replaced by GRUB2, a completely rewritten and more versatile bootloader. It's often referred to as just "GRUB" in casual terms.</p>
+</li>
+<li>
+<p><strong>GRUB2 Features</strong>: GRUB2 has the capability to handle UEFI firmware and GPT partition style, making it suitable for modern systems.</p>
+</li>
+<li>
+<p><strong>GRUB Configuration File</strong>: The configuration file for GRUB2 is typically located in <code>/etc/default/grub</code> on Debian-based systems and 
+<code>/boot/grub2/grub.cfg</code> on Red Hat-based systems (e.g., Rocky Linux).</p>
+</li>
+<li>
+<p><strong>Modifying Configuration</strong>: Users should make changes to <code>/etc/default/grub</code> rather than directly modifying grub.cfg. The changes are applied using the <code>update-grub</code> command on Debian-based systems or grub2-mkconfig on Red Hat-based systems.</p>
+</li>
+<li>
+<p><strong>Distribution Differences</strong>: Red Hat-based systems explicitly use the directory name GRUB2, while Debian-based systems often refer to GRUB2 as just "GRUB." The command for generating the configuration file differs between distributions.</p>
+</li>
+<li>
+<p><strong>Understanding Differences</strong>: It's important to be aware of these distribution-specific differences and commands when working with Linux bootloaders.</p>
+</li>
+<li>
+<p><strong>Boot Sources in Linux</strong>: The text discusses various boot sources in Linux, including PXE (preboot execution environment), network booting, CD/DVD, USB drives, and live operating systems for forensics and analysis.</p>
+</li>
+</ul>
+<h2 id="kernel-panic">Kernel Panic</h2>
+<blockquote>
+<p><strong>Kernel Panic</strong> Introduction to kernel panic, what it is, and how to identify its potential causes. Real-world applications of solving kernel panics using backups.<br></p>
+</blockquote>
+<ul>
+<li>
+<p><strong>Kernel Panic</strong>: Kernel panic occurs when the Linux kernel stops running in memory, causing the entire system to crash.</p>
+</li>
+<li>
+<p><strong>Causes of Kernel Panic</strong>: Kernel panic can happen due to various reasons, including driver issues, hardware problems (e.g., memory or CPU issues), malware infections, or problems during a kernel update.</p>
+</li>
+<li>
+<p><strong>Backup Kernel</strong>: It's essential to have a working backup of the kernel before performing updates to allow for a rollback in case of issues.</p>
+</li>
+<li>
+<p><strong>Diagnosing Kernel Panic</strong>: To diagnose kernel panic issues, check log files such as kern.log, syslog, and dmesg for kernel-related messages, although detailed diagnosis often requires kernel expertise.</p>
+</li>
+<li>
+<p><strong>Utilizing Alternative Kernel Images</strong>: Linux systems often keep backup kernel images, allowing users to boot from a previous working configuration in case of kernel issues. Access to these images is typically available through the GRUB menu during system boot.</p>
+</li>
+<li>
+<p><strong>GRUB Menu</strong>: The GRUB menu allows users to choose different kernel images during system boot, providing a way to recover from kernel panic situations.</p>
+</li>
+<li>
+<p><strong>Troubleshooting</strong>: Understanding how to access the GRUB menu and selecting alternative kernel images is a practical solution to recover from kernel panic issues.</p>
+</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Log files location</p>
+<p>These are some location you could findthe reasons for the error!.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>root@systemn:<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/var
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>root@systemn:/var$<span class="w"> </span>ls
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>root@systemn:/var$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>log
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>root@systemn:/var/log$<span class="w"> </span>ls
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>root@systemn:/var/log$<span class="w"> </span>cat<span class="w"> </span>kern.log
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>root@systemn:/var/log$<span class="w"> </span>clear
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>root@systemn:/var/log$<span class="w"> </span>cat<span class="w"> </span>syslog
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>root@systemn:/var/log$<span class="w"> </span>clear
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>root@systemn:/var/log$<span class="w"> </span>cat<span class="w"> </span>dmesg
+</span></code></pre></div>
+<p>This is where you will find old kernal images to rolback too.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>root@systemn:<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/boot
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>root@systemn:/boot$<span class="w"> </span>ls
+</span></code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To restart the system manually.
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>root@systemn:<span class="w"> </span>shutdown<span class="w"> </span>-r<span class="w"> </span>now
+</span></code></pre></div>
+Hold down the shift button, what happens is you will be presented with the grub menu and you can choose different images such as a resuce image.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Georgette Webb
+
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.indexes", "navigation.instant", "toc.integrate", "announce.dismiss", "search.suggest", "search.share", "search.highlight", "content.tabs.link", "content.tooltips", "content.code.select", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>
