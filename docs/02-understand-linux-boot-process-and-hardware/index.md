@@ -43,17 +43,17 @@ The choice between MBR and GPT depends on your specific needs and hardware. If y
 
 - **Importance of Hardware Management**: Understanding and managing external hardware components is crucial, especially for Linux+ examination.
 
-- **lspci Command**: The `lspci` command for listing PCI devices in Linux.
+- **`lspci` Command**: Lists PCI buses and devices connected to them.
 
 - **Using man Command**: Using the `man` command to access manual pages for Linux utilities.
 
-- **Options for lspci**: The use of various options like `-v`, `-vv`, `-vvv`, `-b`, `-k`, and `-D` with `lspci` for detailed information.
+- **Options for `lspci`**: The use of various options like `-v`, `-vv`, `-vvv`, `-b`, `-k`, and `-D` with `lspci` for detailed information.
 
-- **lsusb Command**: The `lsusb` command for listing USB devices in Linux.
+- **`lsusb` Command**: The `lsusb` command for listing USB devices in Linux.
 
 - **Accessing lsusb Manual Pages**: How to access manual pages for the `lsusb` command using `man`.
 
-- **Using lsusb**: The use of `lsusb` to list connected USB devices and obtain verbose information with `-v`.
+- **Using `lsusb`**: The use of `lsusb` to list connected USB devices and obtain verbose information with `-v`.
 
 - **dmidecode Command**: The `dmidecode` command for inspecting hardware information, including BIOS, motherboard, processor, and memory details.
 
