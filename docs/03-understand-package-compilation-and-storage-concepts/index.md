@@ -127,7 +127,14 @@
     - Conclusion on FUSE
       Summarizing the capabilities of FUSE and its importance for regular users in mounting filesystems without administrative rights.
 
+!!! example "install sshfs"
+    [How To Use SSHFS to Mount Remote File Systems Over SSH](https://www.digitalocean.com/community/tutorials/how-to-use-sshfs-to-mount-remote-file-systems-over-ssh). Example only:
 
+    ```bash
+    sudo apt install sshfs
+    sudo mkdir /mnt/droplet
+    sudo sshfs root@10.0.0.23:other_server /mnt/droplet
+    ```
 
 
 
